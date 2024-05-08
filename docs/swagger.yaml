@@ -1,0 +1,100 @@
+basePath: /
+definitions:
+  api.LoginRequest:
+    properties:
+      password:
+        type: string
+      username:
+        type: string
+    type: object
+  api.Test:
+    properties:
+      message:
+        type: string
+    type: object
+  api.Token:
+    properties:
+      token:
+        type: string
+    type: object
+  main.LoginRequest:
+    properties:
+      password:
+        type: string
+      username:
+        type: string
+    type: object
+  main.Test:
+    properties:
+      message:
+        type: string
+    type: object
+  main.Token:
+    properties:
+      token:
+        type: string
+    type: object
+host: localhost:1323
+info:
+  contact: {}
+  description: This is a sample Swagger API for the Echo framework.
+  title: Swagger Example API
+  version: "1.0"
+paths:
+  /:
+    get:
+      description: Returns a welcome message
+      operationId: accessible
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/main.Test'
+      summary: Accessible endpoint
+  /login:
+    post:
+      consumes:
+      - application/json
+      description: Logs in a user and returns a JWT token
+      operationId: login
+      parameters:
+      - description: Login Request
+        in: body
+        name: loginRequest
+        required: true
+        schema:
+          $ref: '#/definitions/main.LoginRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Token
+          schema:
+            $ref: '#/definitions/main.Token'
+        "401":
+          description: Unauthorized
+          schema:
+            type: string
+      summary: Login endpoint
+  /restricted:
+    get:
+      description: Returns a welcome message
+      operationId: restricted
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/main.Test'
+      security:
+      - Bearer: []
+      summary: Restricted endpoint
+securityDefinitions:
+  Bearer:
+    in: header
+    name: Authorization
+    type: apiKey
+swagger: "2.0"

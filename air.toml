@@ -1,0 +1,36 @@
+# air.toml
+# Refresh web files for browser side reloading.
+[build]
+# Provide a binary name.
+bin = "main"
+# Provide a directory path, relative to this `air.toml`.
+dir = "."
+# Exclude directories and files.
+exclude_dir = ["assets", "tmp", "vendor"]
+exclude_file = ["main_test.go"]
+# Watch these filename extensions.
+file_ext = [
+    ".go", ".tpl", ".tmpl", ".html",
+    ".css", ".scss", ".sass", ".less",
+    ".js", ".jsx", ".mjs", ".cjs",
+    ".json", ".yml", ".yaml", ".toml",
+    ".xml", ".csv", ".ini", ".dotenv",
+    ".sh", ".graphql", ".gql",
+    ".png", ".jpg", ".jpeg", ".gif", ".ico", ".svg",
+    ".woff", ".woff2", ".ttf", ".otf", ".eot",
+    ".wav", ".mp3", ".mp4", ".webm", ".ogg", ".flac", ".aac",
+    ".zip", ".tar", ".tgz", ".gz", ".7z", ".rar",
+    ".doc", ".docx", ".ppt", ".pptx", ".xls", ".xlsx", ".pdf",
+    ".snap",
+]
+# These directories have custom import paths.
+import_path = [
+    ["github.com/labstack/echo", "github.com/labstack/echo/v4"],
+    ["gopkg.in/yaml.v2", "gopkg.in/yaml.v3"],
+]
+# Specify the command to run before build.
+before_build = "echo 'before build'"
+# Specify the command to run after build.
+after_build = "echo 'after build'"
+# Specify the delay in milliseconds for refresh.
+delay = 1000
